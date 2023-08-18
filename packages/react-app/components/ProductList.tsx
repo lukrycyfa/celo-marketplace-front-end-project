@@ -39,13 +39,12 @@ const ProductList = () => {
   const { data: _productsmeta } = useContractCall("readProducts", [], true);
 
   // Instanciate the useFeeInfo hook to read gas fee information form the network
-  const { data: _feedata } = useFeeInfo()
+  const { gasPrice, maxFeePerGas } = useFeeInfo()
 
   // Instanciate the seRetriveBalance hook to read connected accounts's address and cusdBalance
   const { address, cusdBalance } = useRetriveBalance()
 
-  // Assign the returned products and gas infomation to variables 
-  const feeinfo = _feedata ? _feedata : [];
+  // Assign the returned products to variable 
   const _products = _productsmeta ? _productsmeta : [];
 
   // assign the returned products to the state
@@ -192,8 +191,8 @@ const ProductList = () => {
         <div className="mx-auto max-w-2xl items-center justify-center px-1 py-10 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 font-mono">
           {/* Displays gas fee and account balance */}
           {address && (<div className="overflow-x-scroll items-center justify-center dark:border-slate-800 border-2 flex space-x-2 px-3 rounded-lg grid-cols-4 gap-x-8 gap-y-10 py-3">
-            <h2 className="text-1xl font-bold text-center tracking-tight dark:text-slate-400">FeeData-gasPrice: {ethers.utils.formatEther(feeinfo?.formatted.gasPrice || 0)} cUSD</h2>
-            <h2 className="text-1xl font-bold text-center tracking-tight dark:text-slate-400">FeeData-maxFeePerGas: {ethers.utils.formatEther(feeinfo?.formatted.maxFeePerGas || 0)} cUSD</h2>
+            <h2 className="text-1xl font-bold text-center tracking-tight dark:text-slate-400">FeeData-gasPrice: {ethers.utils.formatEther(gasPrice || 0)} cUSD</h2>
+            <h2 className="text-1xl font-bold text-center tracking-tight dark:text-slate-400">FeeData-maxFeePerGas: {ethers.utils.formatEther( maxFeePerGas || 0)} cUSD</h2>
             <h2 className="text-1xl font-bold text-center tracking-tight dark:text-slate-400">Wallet-Balance: {Number(cusdBalance?.formatted || 0).toFixed(2)} cUSD</h2>
           </div>)}
           {(<div className="flex flex-nowrap overflow-x-scroll border-2 dark:bg-slate-800 dark:border-slate-700 space-x-8 px-10 rounded-lg shadow-xl py-10">
