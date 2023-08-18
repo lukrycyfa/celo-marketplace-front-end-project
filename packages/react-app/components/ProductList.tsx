@@ -50,7 +50,7 @@ const ProductList = () => {
     // If there are no products, return null
     if (!_products) return null;
     // assign the retrived products 
-    var _retrivedProducts = _products;
+    var _retrivedProducts = Array(_products);
     const products = Array();
     // asserts if the the function was called with the sorted parameter
     if (sortBy !== null) {

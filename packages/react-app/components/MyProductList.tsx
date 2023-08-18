@@ -28,10 +28,11 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   // Define and called to assign returned storeproducts to individual MyProduct components.  
   const getMyStoreProducts = () => {
     var ProductArray = Array();
+    var products = Array(_storeproducts);
     // If there are no storeproducts, return null
     if (_storeproducts) {
       //Loop through the storeproducts, populate a MyProduct component and push it into the products array
-      _storeproducts.forEach((prod: object | any, id: number | any) => {
+      products.forEach((prod: object | any, id: number | any) => {
         ProductArray.push(
           <MyProduct
             _product={prod}
@@ -49,10 +50,11 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   // Define and called to assign returned purchasedproducts to individual Purchased components.
   const getPurchasedProducts = () => {
     var ProductArray = Array();
+    var products = Array(_purchasedproducts);
     // If there are no purchasedproducts, return null
     if (_purchasedproducts) {
       //Loop through the purchasedproducts, populate a Purchased component and push it into the products array
-      _purchasedproducts.forEach((prod: object | any, id: number | any) => {
+      products.forEach((prod: object | any, id: number | any) => {
         ProductArray.push(
           <Purchased
             _product={prod}
