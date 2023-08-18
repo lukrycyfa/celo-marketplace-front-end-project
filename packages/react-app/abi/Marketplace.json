@@ -1,0 +1,525 @@
+{
+  "address": "0xa2Ff5c0C1E932B07bAAE3aea91Fe70c4e5A2b32e",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_newstock",
+          "type": "uint256"
+        }
+      ],
+      "name": "addStock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "buyProduct",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_comment",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "commentProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "deleteProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "deletePurchasedProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "readMyProducts",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "productId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "sold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "instock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "discount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "pricewithdiscount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "ifdiscount",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct Marketplace.Product[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "readMyPurchasedProducts",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "productId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "ownedby",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "count",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Marketplace.PurchasedProduct[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "Idx",
+          "type": "uint256"
+        }
+      ],
+      "name": "readProduct",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "productId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "sold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "instock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "discount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "pricewithdiscount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "ifdiscount",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct Marketplace.Product",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idx",
+          "type": "uint256"
+        }
+      ],
+      "name": "readProductComents",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "customer",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "review",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Marketplace.ProductComments[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "readProducts",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "productId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "sold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "instock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "discount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "pricewithdiscount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "ifdiscount",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct Marketplace.Product[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "toggleDiscountStatus",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_image",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_location",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pricewithdiscount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "Idx",
+          "type": "uint256"
+        }
+      ],
+      "name": "validProduct",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_image",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_location",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_instock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pricewithdiscount",
+          "type": "uint256"
+        }
+      ],
+      "name": "writeProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}
