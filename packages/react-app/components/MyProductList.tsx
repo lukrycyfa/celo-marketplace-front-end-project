@@ -1,6 +1,6 @@
 // The MyProductList component displays all products purchased and for sale by a connected account
 // Importing needed dependencies and utilities from react
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 // Import the MyProduct and Purchased components to render products information.
 import MyProduct from "./StoreProduct";
 import Purchased from "./PurchasedProduct";
@@ -17,6 +17,10 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   const [storePage, setStorePage] = useState(1);
   const [purchasedPage, setPurchasedPage] = useState(1);
 
+  // Define the states to store our returned products from the contract.
+  const [storeproducts, setStoreProducts] = useState<[] | any>([]);
+  const [purchasedproducts, setPurchasedProducts] = useState<[] | any>([])
+
   // Instanciate the useContractCall hook to return all connected account Store Products and Purchased Product from the contract.
   const { data: _storeproductsmeta } = useContractCall("readMyProducts", [], true, address);
   const { data: _productsmeta } = useContractCall("readMyPurchasedProducts", [], true, address);
@@ -25,14 +29,19 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   const _storeproducts = _storeproductsmeta ? _storeproductsmeta : [];
   const _purchasedproducts = _productsmeta ? _productsmeta : [];
 
+  // assign the returned products to their respective states
+  useEffect(()=>{
+    setStoreProducts(_storeproducts);
+    setPurchasedProducts(_purchasedproducts);
+  },[_storeproducts, _purchasedproducts ])  
+
   // Define and called to assign returned storeproducts to individual MyProduct components.  
   const getMyStoreProducts = () => {
     var ProductArray = Array();
-    var products = Array(_storeproducts);
-    // If there are no storeproducts, return null
-    if (_storeproducts) {
+    // If there are no store products an empty array will be returned
+    if (storeproducts) {
       //Loop through the storeproducts, populate a MyProduct component and push it into the products array
-      products.forEach((prod: object | any, id: number | any) => {
+      storeproducts.forEach((prod: object | any, id: number | any) => {
         ProductArray.push(
           <MyProduct
             _product={prod}
@@ -50,11 +59,10 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   // Define and called to assign returned purchasedproducts to individual Purchased components.
   const getPurchasedProducts = () => {
     var ProductArray = Array();
-    var products = Array(_purchasedproducts);
-    // If there are no purchasedproducts, return null
-    if (_purchasedproducts) {
+    // If there are no purchased products an empty array will be returned
+    if (purchasedproducts) {
       //Loop through the purchasedproducts, populate a Purchased component and push it into the products array
-      products.forEach((prod: object | any, id: number | any) => {
+      purchasedproducts.forEach((prod: object | any, id: number | any) => {
         ProductArray.push(
           <Purchased
             _product={prod}
