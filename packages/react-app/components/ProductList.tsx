@@ -1,6 +1,6 @@
 // The ProductList component displays all products for sale in the marketplace and other utilities.
 // Importing needed dependencies and utilities from react
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect, useRef } from "react";
 // Import the useContractCall hook to return all products from the contract to the market place
 import { useContractCall } from "@/hooks/contract/useContractRead";
 // Import ethers from ethers to convert values
@@ -44,21 +44,22 @@ const ProductList = () => {
   // Instanciate the seRetriveBalance hook to read connected accounts's address and cusdBalance
   const { address, cusdBalance } = useRetriveBalance()
 
+  var _testProducts = useRef<[] | any>([])
   // Assign the returned products to variable 
   const _products = _productsmeta ? _productsmeta : [];
-
+  _testProducts.current = _products
   // assign the returned products to the state
-  useEffect(()=>{
-    setMarketProducts(_products);
-  },[_products])
+  // useEffect(()=>{
+  //   setMarketProducts(_products);
+  // },[_products])
 
 
   // Define and called to assign returned products to individual product components either sorted or not
   const getProducts = (sortBy?: string | null) => {
     // If there are no products, return null
-    if (!marketproducts) return null;
+    if (!_testProducts.current) return null;
     // assign the retrived products 
-    var _retrivedProducts = marketproducts;
+    var _retrivedProducts = _testProducts.current;
     const products = Array();
     // asserts if the the function was called with the sorted parameter
     if (sortBy !== null) {
