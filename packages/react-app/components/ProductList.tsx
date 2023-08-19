@@ -48,17 +48,17 @@ const ProductList = () => {
   const _products = _productsmeta ? _productsmeta : [];
 
   // assign the returned products to the state
-  // useEffect(()=>{
-  //   setMarketProducts(_products);
-  // },[_products])
+  useEffect(()=>{
+    setMarketProducts(_products);
+  },[_products])
 
 
   // Define and called to assign returned products to individual product components either sorted or not
   const getProducts = (sortBy?: string | null) => {
     // If there are no products, return null
-    if (!_products) return null;
+    if (!marketproducts) return null;
     // assign the retrived products 
-    var _retrivedProducts = _products;
+    var _retrivedProducts = marketproducts;
     const products = Array();
     // asserts if the the function was called with the sorted parameter
     if (sortBy !== null) {
