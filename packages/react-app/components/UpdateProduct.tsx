@@ -218,7 +218,7 @@ const UpdateProductModal = ({ product }: any) => {
                       onChange={(e) => {
                         setProductName(e.target.value);
                       }}
-                      value={debouncedProductName}
+                      value={productName}
                       required
                       type="text"
                       className="w-full bg-gray-100 p-2 mt-2 mb-3"
@@ -230,7 +230,7 @@ const UpdateProductModal = ({ product }: any) => {
                         setProductImage(e.target.value);
                       }}
                       required
-                      value={debouncedProductImage}
+                      value={productImage}
                       type="text"
                       className="w-full bg-gray-100 p-2 mt-2 mb-3"
                     />
@@ -239,7 +239,7 @@ const UpdateProductModal = ({ product }: any) => {
                     <textarea
                       rows={3}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      defaultValue={debouncedProductDescription}
+                      defaultValue={productDescription}
                       required
                       onChange={(e) => {
                         setProductDescription(e.target.value);
@@ -252,7 +252,7 @@ const UpdateProductModal = ({ product }: any) => {
                         setProductLocation(e.target.value);
                       }}
                       required
-                      value={debouncedProductLocation}
+                      value={productLocation}
                       type="text"
                       className="w-full bg-gray-100 p-2 mt-2 mb-3"
                     />
@@ -279,7 +279,7 @@ const UpdateProductModal = ({ product }: any) => {
                         setProductDiscount(Number(e.target.value));;
                       }}
                       required
-                      value={debouncedProductDiscount}
+                      value={productDiscount}
                       className="w-full bg-gray-100 p-2 mt-2 mb-3"
                     />
                   </div>
