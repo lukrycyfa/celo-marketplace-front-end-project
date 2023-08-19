@@ -48,13 +48,14 @@ const ProductList = () => {
   const _products = _productsmeta ? _productsmeta : [];
 
   // assign the returned products to the state
-  useEffect(()=>{
-    setMarketProducts(_products);
-  },[_products])
+  // useEffect(()=>{
+  //   setMarketProducts(_products);
+  // },[_products])
 
 
   // Define and called to assign returned products to individual product components either sorted or not
   const getProducts = (sortBy?: string | null) => {
+    setMarketProducts(_products);
     // If there are no products, return null
     if (!marketproducts) return null;
     // assign the retrived products 
