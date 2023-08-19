@@ -1,6 +1,6 @@
 // This component displays a store product owned by a connected account and it's utilities.
 // Importing the dependencies and utilities from react
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 // import ethers to convert the product price
 import { ethers } from "ethers";
 // Import the toast library to display notifications
@@ -78,7 +78,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   // The `useContractCall` custom hook, for retriving comments relating to this product.
   const { data: _comments }: any = useContractCall("readProductComents", [Number(_product.productId)], true);
   // Assign the returned comments to the `_productcomment` variables
-  const _productcomments = _comments ? _comments : [];
+  const _productcomments = useMemo(()=> _comments ? _comments : [], [_comments]);
 
   // Resets these States when called. 
   const reSet = () => {
@@ -184,7 +184,9 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
       <div className="flex-none w-52 h-64 mb-10  relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-teal-400">
         {/* Displays the product's image */}
         <img src={product?.image}
-          alt={"image"} className="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
+          alt={"image"} 
+          className="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" 
+          />
       </div>
       <div className="mt-4 max-h-60 max-w-96 overflow-y-scroll px-4 py-4 ">
         <div className="relative flex flex-wrap items-baseline pb-6 before:bg-black before:absolute before:-top-6 before:bottom-4 before:-left-60 before:-right-6">

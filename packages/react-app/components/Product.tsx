@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 // This component displays a product and it's utilities.
 // Importing the dependencies and utilities from react
-import { useCallback, useEffect, useState, Fragment } from "react";
+import { useCallback, useEffect, useState, Fragment, useMemo } from "react";
 // Import ethers to format the price of the product correctly
 import { ethers } from "ethers";
 // Import other components needed to render information
@@ -85,7 +85,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
   // The `useContractCall` custom hook, for retriving comments relating to this product.
   const { data: _comments }: any = useContractCall("readProductComents", [Number(_product.productId)], true);
   // Assign the returned comments to the `_productcomment` variables
-  const _productcomments = _comments ? _comments : [];
+  const _productcomments = useMemo(()=> _comments ? _comments : [], [_comments]);
 
   // Use the useConnectModal hook to trigger the wallet connect modal
   const { openConnectModal } = useConnectModal();
@@ -142,7 +142,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       setApproved(true);
       toast.success("Purchase Approved")
     }
-  }, [approvedEvent, confirm]);
+  }, [approvedEvent, confirm, setApprovedEvent, setLoading ]);
 
   // Resets these States when called. 
   const reSet = () => {
@@ -229,6 +229,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
         // If the user is not connected, trigger the wallet connect modal
         if (!address && openConnectModal) {
           openConnectModal();
+          setLoading("");
           return;
         }
         // If the user is connected, call parsed `function`
@@ -487,7 +488,6 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                                     setTimeout(() => {
                                       getProduct("comment", handleComment);
                                     }, 2000);
-                                    setNewComment("");
                                   }}
                                   className="h-10 px-6 font-semibold rounded-md border hover:bg-blue-700 dark:border-slate-700 text-slate-300"
                                 >

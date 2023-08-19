@@ -1,6 +1,6 @@
 // The MyProductList component displays all products purchased and for sale by a connected account
 // Importing needed dependencies and utilities from react
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect, useMemo } from "react";
 // Import the MyProduct and Purchased components to render products information.
 import MyProduct from "./StoreProduct";
 import Purchased from "./PurchasedProduct";
@@ -26,8 +26,8 @@ const MyProducts = ({ address, loading, setLoading }: any) => {
   const { data: _productsmeta } = useContractCall("readMyPurchasedProducts", [], true, address);
 
   // Assign the returned products to variables. 
-  const _storeproducts = _storeproductsmeta ? _storeproductsmeta : [];
-  const _purchasedproducts = _productsmeta ? _productsmeta : [];
+  const _storeproducts =  useMemo(()=> _storeproductsmeta ? _storeproductsmeta : Array, [_storeproductsmeta ]);
+  const _purchasedproducts = useMemo(()=> _productsmeta ? _productsmeta : Array, [_productsmeta]);
 
   // assign the returned products to their respective states
   useEffect(()=>{

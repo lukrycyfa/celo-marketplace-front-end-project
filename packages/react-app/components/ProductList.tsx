@@ -1,6 +1,6 @@
 // The ProductList component displays all products for sale in the marketplace and other utilities.
 // Importing needed dependencies and utilities from react
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect, useMemo } from "react";
 // Import the useContractCall hook to return all products from the contract to the market place
 import { useContractCall } from "@/hooks/contract/useContractRead";
 // Import ethers from ethers to convert values
@@ -45,7 +45,7 @@ const ProductList = () => {
   const { address, cusdBalance } = useRetriveBalance()
 
   // Assign the returned products to variable 
-  const _products = _productsmeta ? _productsmeta : [];
+  const _products = useMemo(()=> _productsmeta ? _productsmeta : [], [_productsmeta]);
 
   // assign the returned products to the state
   useEffect(()=>{
