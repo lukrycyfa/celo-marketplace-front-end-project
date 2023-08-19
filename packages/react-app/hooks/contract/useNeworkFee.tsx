@@ -14,10 +14,9 @@ export const useFeeInfo = () => {
         formatUnits: 'wei',
         watch: true,
         chainId: 44787,
-        onSuccess(data) {
-            console.log('Success', data)
-            console.clear()
-        },
+        onError: (err) => {
+            console.log({ err })
+        }
     })
 
     // Assign gasPrice and maxFeePerGas to thier states

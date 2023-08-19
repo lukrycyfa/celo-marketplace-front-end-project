@@ -18,9 +18,9 @@ export const useContractSend = (functionName: string, args: Array<any>, enablequ
         args,
         // // Sets the automatic query state of the hook. 
         enabled: enablequery,
-        onSettled(data, error) {
-            console.log('Settled-0', { data, error })
-        },
+        onError: (err) => {
+            console.log({ err })
+        }
     })
     // Write to the smart contract using the prepared config
     var { data, isSuccess, write, writeAsync, error, isLoading } = useContractWrite(config)

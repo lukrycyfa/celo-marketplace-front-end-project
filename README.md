@@ -3,7 +3,7 @@
 - On this celo marketplace front-end project, developed for the Celo marketplace contract I have made a couple of improvements to the UI/UX, added new features and utilities as part of these improvements. Some of the key improvements made are the comment section, an approval process before a product purchase, a sort product utility, a product discount feature, and more. More details about these features below. 
 
 - The Comment section basically was added for customers and product owners to make reviews on products
-- The Approval before purchase process basically is a hook `useContractEvents` added to handle some edge errors keeping track of the user’s purchase approval process asserting there is a provisioned allowance for the product purchase.
+- The Approval before purchase process basically is a hook `useContractEvents` added to handle some edge errors keeping track of the user’s purchase approval process asserting from logs there was an approval and provisioned allowance for the product purchase.
 - The Sort Product utility is added to sort products in the preferred available order.
 - The product discount feature is there basically for the product owner to apply discounts on products and enable or disable these features at will.
 - Others
