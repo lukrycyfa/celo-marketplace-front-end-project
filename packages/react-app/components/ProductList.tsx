@@ -197,7 +197,7 @@ const ProductList = () => {
           </div>)}
           {(<div className="flex flex-nowrap overflow-x-scroll border-2 dark:bg-slate-800 dark:border-slate-700 space-x-8 px-10 rounded-lg shadow-xl py-10">
             {/* Return Products in individual components in default order */}
-            {!sortByprice && !sortBysold && (<>{getProducts()}</>)}
+            {!sortByprice && !sortBysold && (<>{getProducts(null)}</>)}
             {/* Return Products in individual components sorted by price */}
             {sortByprice && (<>{getProducts("price")}</>)}
             {/* Return Products in individual components sorted by sold */}
