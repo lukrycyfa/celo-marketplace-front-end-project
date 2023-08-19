@@ -1,5 +1,4 @@
 // This hook is used to read from a smart contract
-
 // Import the wagmi hook to read from a smart contract
 import { useContractRead } from 'wagmi';
 // Import the Marketplace ABI(Interface)
@@ -18,9 +17,8 @@ export const useContractCall = (functionName: string, args?: Array<any>, watch?:
         args,
         // A boolean to watch for changes in the smart contract. If true, the hook will re-run when the smart contract changes
         watch,
-        // The address of the user to call the smart contract function from which is optional
+        // The address of the connected account to call the smart contract function from. which is optional
         account: from,
-        // overrides: from ? { from } : undefined,
         onError: (err) => {
             console.log({ err })
         }

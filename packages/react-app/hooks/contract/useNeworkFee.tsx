@@ -1,4 +1,4 @@
-// This hook is utilzed to return network fee information
+// This hook is utilized to return network fee information
 // import dependencies and utilities from react.
 import { useState, useEffect } from "react";
 // Import useFeeData for network fee information
@@ -16,6 +16,7 @@ export const useFeeInfo = () => {
         chainId: 44787,
         onSuccess(data) {
             console.log('Success', data)
+            console.clear()
         },
     })
 

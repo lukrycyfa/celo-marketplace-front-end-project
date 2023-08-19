@@ -3,13 +3,10 @@
 import { useContractWrite, usePrepareContractWrite } from 'wagmi';
 // Import the Marketplace ABI(Interface)
 import MarketplaceInstance from "../../abi/Marketplace.json";
-// Import BigNumber from ethers to handle big numbers used in Celo
-import { BigNumber } from "ethers";
 
 // write to a smart contract
 export const useContractSend = (functionName: string, args: Array<any>, enablequery: boolean) => {
-    // The gas limit to use when sending a transaction
-    const gasLimit = BigNumber.from(1000000);
+
     const { config } = usePrepareContractWrite({
         // The address of the smart contract, in this case the Marketplace from the JSON file
         address: MarketplaceInstance.address as `0x${string}`,
@@ -19,7 +16,7 @@ export const useContractSend = (functionName: string, args: Array<any>, enablequ
         functionName,
         // // The arguments to pass to the smart contract function
         args,
-        // // Sets the automatically query state. 
+        // // Sets the automatic query state of the hook. 
         enabled: enablequery,
         onSettled(data, error) {
             console.log('Settled-0', { data, error })

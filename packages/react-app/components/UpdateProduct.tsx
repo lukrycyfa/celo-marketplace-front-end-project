@@ -10,7 +10,7 @@ import { useDebounce } from "use-debounce";
 // Import our custom useContractSend hook to update a product in the marketplace contract
 import { useContractSend } from "@/hooks/contract/useContractWrite";
 
-// Define the UpdateProductModal component
+// Define the UpdateProductModal component and utilities
 const UpdateProductModal = ({ product }: any) => {
   // The visible state is used to toggle the visibility of the modal
   const [visible, setVisible] = useState(false);
@@ -33,9 +33,10 @@ const UpdateProductModal = ({ product }: any) => {
   const [debouncedProductLocation] = useDebounce(productLocation, 500);
   const [debouncedProductDiscount] = useDebounce(productDiscount, 500);
   const [debouncedProductId] = useDebounce(productId, 500);
+  // Sets the state for the loading message
   const [loading, setLoading] = useState("");
 
-  // Check if all the input fields are filled
+  // Checks if all the input fields are completed
   const isComplete =
     (productName.length > 0 &&
       Number(productPrice) > 0 &&
@@ -87,7 +88,7 @@ const UpdateProductModal = ({ product }: any) => {
     debouncedProductId
   ], enablequery);
 
-  //Called to reset states and clear form
+  //Called to reset states and clear the form
   const reSet = () => {
     setEnableQuery(false);
     setLoading("");
@@ -101,25 +102,26 @@ const UpdateProductModal = ({ product }: any) => {
     setTimeout(async () => {
       // throw an error if the `updateProduct` utility is undefined.
       if (!updateProduct) {
-        reSet();
         toast.error("Failed to create product");
+        reSet();
         throw "Failed to create product";
       }
 
       if (!isComplete) throw new Error("Please fill all fields");
-      // sets the setLoading alert
+      // sets the Loading alert
       setLoading("Updating...");
       toast.loading("Updating...", { toastId: 1 });
-      // Update the product by calling the `updateProduct` function on the marketplace contract
+      // Update the product by calling the `updateProduct` utility
       await updateProduct();
-      // sets the setLoading alert 
+      // sets the Loading alert 
       toast.done(1)
       setLoading("Product Updated");
+      // sets the Success alert 
       toast.success("Product Updated");
-      // Reset states and clear form
+      // Reset states and clear the form
       setTimeout(() => {
         reSet();
-      }, 2500);
+      }, 2000);
     }, 1500);
 
   };
@@ -129,7 +131,7 @@ const UpdateProductModal = ({ product }: any) => {
     return (num < 100);
   }
 
-  // Called to enable and disable all input field and the `useContractSend` hook's automatic query state. 
+  // Called to enable and disable all input field and the `useContractSend` hook's automatic query state (`enablequery`). 
   const enableSubmit = () => {
     if (enablequery) {
       document.querySelectorAll('input').forEach((i) => {
@@ -150,7 +152,7 @@ const UpdateProductModal = ({ product }: any) => {
   const doUpdateProduct = async (e: any) => {
     e.preventDefault();
     try {
-      // Call the  handleUpdateProduct function 
+      // Call the handleUpdateProduct function 
       await handleUpdateProduct()
       // Display an error message if something goes wrong
     } catch (e: any) {

@@ -41,13 +41,13 @@ const ProductList = () => {
   // Instanciate the useFeeInfo hook to read gas fee information form the network
   const { gasPrice, maxFeePerGas } = useFeeInfo()
 
-  // Instanciate the seRetriveBalance hook to read connected accounts's address and cusdBalance
+  // Instanciate the useRetriveBalance hook to read connected accounts's address and cusdBalance
   const { address, cusdBalance } = useRetriveBalance()
 
-  // Assign the returned products to variable 
+  // Assign the returned products to the `_products` variable 
   const _products = useMemo(()=> _productsmeta ? _productsmeta : [], [_productsmeta]);
 
-  // assign the returned products to the state
+  // assign the returned products to the defined state
   useEffect(()=>{
     setMarketProducts(_products);
   },[_products])
@@ -57,7 +57,7 @@ const ProductList = () => {
   const getProducts = (sortBy?: string | null) => {
     // If there are no products, return null
     if (!marketproducts) return null;
-    // assign the retrived products 
+    // assign the retrived products to a variable
     var _retrivedProducts = marketproducts;
     const products = Array();
     // asserts if the the function was called with the sorted parameter

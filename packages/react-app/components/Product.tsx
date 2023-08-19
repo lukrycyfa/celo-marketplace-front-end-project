@@ -49,15 +49,15 @@ interface Comments {
 
 // The Product component construct and utilities, taking the product, connected address and the loading state as Props.
 const Product = ({ _product, address, loading, setLoading }: any) => {
-  // Sets the state which enables the useContractSend hooks to query automatically.
+  // Sets the state that enables the useContractSend hook to query automatically.
   const [enablequery, setEnableQuery] = useState(false);
   // Sets the product to be displayed assinging all attributes using the Product Interface.
   const [product, setProduct] = useState<Product | null>(null);
   // Sets the product comments assinging all attributes using the Comments Interface.
   const [comments, setComments] = useState<Comments | null>(null);
-  // Sets the visible state of the purchase button when a buyer is approved to purchase the product
+  // Sets the visible state of the purchase button when a buyer is getting approved to purchase the product
   const [confirm, setConfirm] = useState(false)
-  // Sets the visible state of the comment button when after the query is enabled `enablequery`
+  // Sets the visible state of the comment button
   const [confirmcomment, setConfirmComment] = useState(false);
   // Sets a function name to be called alongside the `useContractSend` hook
   const [functionname, setFunctionName] = useState<String | any>("");
@@ -96,7 +96,6 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     // Returns null when the product it unavailable
     if (!_product) return null;
     // Sets the product state making use of `_product`, it's attribute's, and the Product interface 
-    // if `_product` is available.
     setProduct({
       id: Number(_product.productId),
       owner: _product.owner,
@@ -169,7 +168,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     toast.loading("Purchasing...", { toastId: 1 });
     // makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
     await callProduct();
-    // sets the setSuccess alert
+    // sets the Success alert
     toast.done(1);
     toast.success("Product Purchased");
     reSet();
@@ -189,7 +188,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       throw "Failed to Approve this Purchase";
     }
     try {
-      // sets the setLoading alert
+      // sets the Loading alert
       setLoading("Approving...");
       toast.loading("Approving...", { toastId: 1 });
       // Approves the purchase with the `approve` utility returned from the `useContractApprove` hook.
@@ -202,6 +201,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     }
   };
 
+  // Define the handleComment function which handles the creation of a comment for a product on the contract
   const handleComment = async () => {
     // throw an error if the `callProduct` utility is undefined.
     if (!callProduct) {
@@ -209,20 +209,20 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       reSet();
       throw "Failed to comment this product";
     }
-    // sets the setLoading alert
+    // sets the Loading alert
     toast.loading("commenting...", { toastId: 1 });
     // makes the comment with the `callProduct` utility returned from the `useContractSend` hook.
     await callProduct();
-    // sets the setSuccess alert
-    // setSuccess("Done");
+    // sets the Success alert
     toast.done(1)
     toast.success("Done");
     reSet();
   };
 
 
-  //The getProduct function, called when the user needs to interact with a contract taking a `function` and a `message` as args.
+  //The getProduct function, called when the user needs to interact with the contract taking a `function` and a `message` as args.
   const getProduct = async (message: String | any, func: Function | any) => {
+    // sets the Loading alert
     setLoading(`${message}ing...`);
     setTimeout(async () => {
       try {
@@ -241,9 +241,6 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
         toast.done(1);
         reSet();
       }
-      // finally {
-      //   reSet();
-      // }
     }, 1500);
 
   };
@@ -478,7 +475,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                                 </button>
                               </>
                             )}
-                            {/* Calls  the `handleComment` function and Sets `newcomment` state when clicked */}
+                            {/* Calls  the `handleComment` function  when clicked */}
                             {confirmcomment && (
                               <>
                                 <button

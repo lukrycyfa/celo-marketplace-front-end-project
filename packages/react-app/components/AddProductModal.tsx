@@ -23,7 +23,7 @@ const AddProductModal = () => {
   const [productImage, setProductImage] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productLocation, setProductLocation] = useState("");
-  // Sets the state which enables the useContractSend hooks to query automatically.
+  // Sets the state that enables the useContractSend hook to query automatically.
   const [enablequery, setEnableQuery] = useState(false);
 
   // The following states are used to debounce the input fields
@@ -34,10 +34,11 @@ const AddProductModal = () => {
   const [debouncedProductLocation] = useDebounce(productLocation, 500);
   const [debouncedProductDiscount] = useDebounce(productDiscount, 500);
   const [debouncedProductInstock] = useDebounce(productInstock, 500);
+  // Sets the state for the loading message
   const [loading, setLoading] = useState("");
 
 
-  // Check if all the input fields are filled
+  // Check if all the input fields are completed
   const isComplete =
     (productName.length > 0 &&
       Number(productPrice) > 0 &&
@@ -85,7 +86,7 @@ const AddProductModal = () => {
     productPriceWithDiscountInWei
   ], enablequery);
 
-  //Called to reset states and clear form
+  // Called to reset states and clear the form
   const reSet = () => {
     setEnableQuery(false);
     setLoading("");
@@ -108,7 +109,7 @@ const AddProductModal = () => {
       // sets the setLoading alert
       setLoading("Creating...");
       toast.loading("Creating...", { toastId: 1 });
-      // Create the product by calling the `writeProduct` function on the marketplace contract
+      // Create the product by calling the `createProduct` utility 
       await createProduct();
       // sets the setLoading alert
       setLoading("Product Added");

@@ -47,11 +47,11 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   const [comments, setComments] = useState<Comments | null>(null);
   // Sets a function name to be called alongside the `useContractSend` hook
   const [functionname, setFunctionName] = useState<String | any>("");
-  // Sets an action to be confirmed when calling the `useContractSend` hook
+  // Sets an action to be confirmed as a message when calling the `modifyProduct` function
   const [confirmAction, setConfirmAction] = useState<String | any>("");
   // Sets the args to be passed to the `useContractSend` hook
   const [args, setArgs] = useState<[] | any>([]);
-  // Sets the state which enables the useContractSend hooks to query automatically.
+  // Sets the state which enables the useContractSend hook to query automatically.
   const [enablequery, setEnableQuery] = useState(false);
   // Sets The visibilty state of the Addstock, Comments, and Connfirm modals.
   const [visibleAddstock, setVisibleAddstock] = useState(false);
@@ -64,7 +64,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   // This state is used to debounce the addstock input field
   const [debouncedProductInstock] = useDebounce(productInstock, 500);
 
-  // Check if the addstock input field is complete
+  // Checks if the addstock input field is complete
   const isComplete = Number(productInstock) > 0;
 
   // Clear the input field after stock has been added to the product
@@ -75,7 +75,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   // The `useContractSend` custom hook, for making calls to the contracts providing a function name and args.
   const { writeAsync: writeProduct } = useContractSend(`${functionname}`, args, enablequery);
 
-  // The `useContractCall` custom hook, for retriving comments relating to this product.
+  // The `useContractCall` custom hook, for retriving comments relating to this product from the contract.
   const { data: _comments }: any = useContractCall("readProductComents", [Number(_product.productId)], true);
   // Assign the returned comments to the `_productcomment` variables
   const _productcomments = useMemo(()=> _comments ? _comments : [], [_comments]);
@@ -92,7 +92,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
     clearForm();
   }
 
-  // Define the `handleWriteProduct` to make modifications on this product through the marketplace contract
+  // Define the `handleWriteProduct` to make modifications to this product through the marketplace contract
   // taking a message as an peremeter for Alerts
   const handleWriteProduct = async (message: String | any) => {
 
@@ -103,15 +103,15 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
         reSet()
         throw `Failed While ${message}ing Product`;
       }
-      // sets the setLoading alert
+      // sets the Loading alert
       setLoading(`${message}ing...`);
       toast.loading(`${message}ing...`, { toastId: 1 })
       // make modifications to the product with the `writeProduct` utility returned from the `useContractSend` hook.
       await writeProduct();
       toast.done(1)
-      // sets the setSuccess alert
-      reSet();
+      // sets the Success alert
       toast.success(`${message}ed`)
+      reSet();
     }, 2000);
 
   };
@@ -128,10 +128,6 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
       toast.done(1)
       reSet();
     }
-    // finally {
-    //   // Call the `reSet` function when done.
-    //   reSet();
-    // }
   };
 
   useEffect(() => {
@@ -295,7 +291,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
           className="fixed z-40  overflow-y-auto top-0 w-full left-0"
           id="modal"
         >
-          {/* Form with input fields for the amount to add to stock */}
+
           <div className="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div className="fixed inset-0 transition-opacity">
               <div className="absolute inset-0 bg-gray-900 opacity-75" />

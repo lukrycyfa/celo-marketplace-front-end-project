@@ -24,14 +24,14 @@ interface Product {
 
 // The Purchased component construct and utilities, taking the _product and the loading state as Props.
 const Purchased = ({ _product, loading, setLoading }: any) => {
-  // Sets the state which enables the useContractSend hooks to query automatically.
+  // Sets the state which enables the useContractSend hook to query automatically.
   const [enablequery, setEnableQuery] = useState(false);
-  // Sets the product to be displayed assinging all attributes using the Product Interface.
+  // Sets the product to be displayed assinging all attributes and using the Product Interface.
   const [product, setProduct] = useState<Product | null>(null);
   // Sets the visible state of the Delete button.
   const [confirm, setConfirm] = useState(false);
 
-  // Makes use of the useContractSend hook and the `deletePurchasedProduct` function to delete a purchased product.
+  // Makes use of the useContractSend hook and the `deletePurchasedProduct` function to delete a purchased product from the contract.
   const { writeAsync: callProduct } = useContractSend("deletePurchasedProduct", [product?.id], enablequery);
 
   // The `getFormatProduct` function called in a `useEffect` hook to define the product to be displayed. 
@@ -39,7 +39,6 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
     // Returns null when the product it unavailable
     if (!_product) return null;
     // Sets the product state making use of `_product`, it's attribute's, and the Product interface 
-    // if `_product` is available.
     setProduct({
       id: Number(_product.productId),
       ownedby: _product.ownedby,
@@ -63,9 +62,10 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
     // throw an error if the `callProduct` utility is undefined.
     if (!callProduct) {
       toast.error("Failed to delete this product");
+      setConfirm(false);
       throw "Failed to delete this product";
     }
-    // sets the setLoading alert
+    // sets the Loading alert
     setLoading("Deleting...");
     toast.loading("Deleting...", { toastId: 1 });
     // delete the product with the `callProduct` utility returned from the `useContractSend` hook
@@ -74,8 +74,9 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
     // Disable the enablquery and confirm states
     setEnableQuery(false);
     setConfirm(false);
-    // sets the setSuccess alert;
+    // sets the Success alert;
     toast.success("Deleted Successfully");
+    setLoading("");
   };
 
 
@@ -92,9 +93,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
         // Disable the enablquery and confirm states
         setEnableQuery(false);
         setConfirm(false);
-        toast.done(1)
-      } finally {
-        // sets the setLoading alert
+        toast.done(1);
         setLoading("");
       }
     }, 1500);
@@ -129,7 +128,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
               {productPriceFromWei} cUSD
             </h1>
             <h1 className=" relative flex-auto text-lg font-semibold text-white-900">
-              {/* Displays the amount time the user purchased this */}
+              {/* Displays the amount of times the user purchased this product */}
               purchased x{product?.count}
             </h1>
             <div className="w-full flex-none text-sm font-medium text-slate-400 mt-2">
@@ -160,7 +159,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
               Confirm Delete
             </button>
             )}
-            {/* Calls `modifyProduct` function when clicked */}
+            {/* Calls the `modifyProduct` function when clicked */}
             {confirm && (<><button
               disabled={!!loading}
               onClick={() => {

@@ -1,4 +1,4 @@
-// This hook is utilzed to return connection status, address and account balance
+// This hook is utilized to return connection status, address and account balance
 // Import useAccount, useBalance from wagmi for connection status, address and account balance
 import { useAccount, useBalance } from 'wagmi';
 // Import the ERC20 ABI(Interface)
