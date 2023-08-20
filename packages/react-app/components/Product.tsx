@@ -487,6 +487,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                               <>
                                 <button
                                   disabled={!!loading || !newComment}
+                                  title={!newComment ? "Please enter a comment before proceeding" : "Add a comment to the product"}
                                   onClick={() => {
                                     setFunctionName("commentProduct");
                                     setArgs([newComment, product.id]);
