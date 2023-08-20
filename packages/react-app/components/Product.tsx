@@ -178,7 +178,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
       toast.done(1);
       reSet();
-
+    } 
   };
 
   // The handleApprove function utilized in make calls to ERC20 cUSD contract to approve the purchase of the product. 
