@@ -13,8 +13,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // Import the custom hook useFeeInfo to read gas fee information form the network
 import { useFeeInfo } from "@/hooks/contract/useNeworkFee";
-// Import the  `useRetriveBalance` to return address and account balance.
-import { useRetriveBalance } from "@/hooks/contract/useReturnBalance";
+// Import the  `useRetrieveBalance` to return address and account balance.
+import { useRetrieveBalance } from "@/hooks/contract/useReturnBalance";
 // Import other components needed to render information
 import { Dialog, Transition, Menu } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -41,8 +41,8 @@ const ProductList = () => {
   // Instanciate the useFeeInfo hook to read gas fee information form the network
   const { gasPrice, maxFeePerGas } = useFeeInfo()
 
-  // Instanciate the useRetriveBalance hook to read connected accounts's address and cusdBalance
-  const { address, cusdBalance } = useRetriveBalance()
+  // Instanciate the useRetrieveBalance hook to read connected accounts's address and cusdBalance
+  const { address, cusdBalance } = useRetrieveBalance()
 
   // Assign the returned products to the `_products` variable 
   const _products = useMemo(()=> _productsmeta ? _productsmeta : [], [_productsmeta]);
@@ -57,16 +57,16 @@ const ProductList = () => {
   const getProducts = (sortBy?: string | null) => {
     // If there are no products, return null
     if (!marketproducts) return null;
-    // assign the retrived products to a variable
-    var _retrivedProducts = marketproducts;
+    // assign the retrieved products to a variable
+    var _retrievedProducts = marketproducts;
     const products = Array();
     // asserts if the the function was called with the sorted parameter
     if (sortBy !== null) {
-      // re-assign the the retrived products after been sorted
-      _retrivedProducts = sortProducts(marketproducts, sortBy);
+      // re-assign the the retrieved products after been sorted
+      _retrievedProducts = sortProducts(marketproducts, sortBy);
     }
-    //Loop through the _retrivedProducts, populate a Product component and push it into the products array
-    _retrivedProducts.forEach((i: object | any, idx: number | any) => {
+    //Loop through the _retrievedProducts, populate a Product component and push it into the products array
+    _retrievedProducts.forEach((i: object | any, idx: number | any) => {
       products.push(
         <Product
           key={idx}

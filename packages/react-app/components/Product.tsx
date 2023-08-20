@@ -114,15 +114,19 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     // Returns when the product comments are unavailable
     if (!_productcomments) return;
     // Sets the product comments making use of each comments attribute's and the Comments interface 
-    var comms = Array()
-    _productcomments.forEach((cm: object | any) => {
+    if (_productcomments) {
+  var comms = Array();
+  _productcomments.forEach((cm: object | any) => {
+    if (cm?.customer && cm?.review) {
       comms.push({
         customer: cm.customer,
         review: cm.review
-      })
-    })
-    setComments({ comments: comms });
-  }, [_product, _productcomments]);
+      });
+    }
+  });
+  setComments({ comments: comms });
+}
+, [_product, _productcomments]);
 
   // Call the getFormatProduct function when `_product` state changes
   useEffect(() => {
@@ -167,6 +171,12 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     try {
             // sets the setLoading alert
       toast.loading("Purchasing...", { toastId: 1 });
+      if (typeof callProduct === "function") {
+      // Makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
+      await callProduct();
+    } else {
+      throw new Error("callProduct is not defined");
+    }
       // makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
       await callProduct();
       // sets the Success alert
@@ -388,7 +398,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           className="mt-4 h-14 w-full border-[1px] border-slate-800 dark:text-slate-200 p-2 rounded-lg hover:bg-slate-800 hover:text-black"
           onClick={() => reSet()}
         >
-          Cancle
+          Cancel
         </button>)}
       </div>
       <Transition.Root show={open} as={Fragment}>
@@ -477,6 +487,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                               <>
                                 <button
                                   disabled={!!loading || !newComment}
+                                  title={!newComment ? "Please enter a comment before proceeding" : "Add a comment to the product"}
                                   onClick={() => {
                                     setFunctionName("commentProduct");
                                     setArgs([newComment, product.id]);
