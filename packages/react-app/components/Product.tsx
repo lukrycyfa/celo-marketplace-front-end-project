@@ -361,7 +361,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           )}
           {/* Calls the `getProduct` function when clicked */}
           {confirm && (<button
-            disabled={!approved || !!loading}
+            disabled={!approved || !!loading || !callProduct}
             onClick={() => {
               setLoading("Purchasing...");
               getProduct("Purchas", handlePurchase);
