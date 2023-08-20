@@ -181,7 +181,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
         {/* Displays the product's image */}
         <img src={product?.image}
           alt={"image"} 
-          className="absolute z-10 inset-0 w-full h-full object-cover rounded-lg" loading="lazy" 
+          className="absolute z-10 inset-0 w-full h-full object-fill object-center rounded-lg" loading="lazy" 
           />
       </div>
       <div className="mt-4 max-h-60 max-w-96 overflow-y-scroll px-4 py-4 ">

@@ -260,7 +260,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
 
   // Return the JSX for the product component
   return (
-    <div className="group relative shrink-0 px-3 w-80 border-2 rounded-lg dark:bg-slate-900 dark:border-slate-800 bg-white text-left shadow-xl font-mono p-2">
+    <div className="group relative shrink-0 px-3 w-96 border-2 rounded-lg dark:bg-slate-900 dark:border-slate-800 bg-white text-left shadow-xl font-mono p-2">
       <div className="mt-4 flex justify-between ">
         <span
           className={
@@ -283,7 +283,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
         <img
           src={product.image}
           alt={"image"}
-          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+          className="h-full w-full object-fill object-center lg:h-full lg:w-full"
         />
       </div>
       <div className="mt-4 max-h-52 overflow-y-scroll border-2 px-2 py-2 rounded-lg dark:bg-slate-800 dark:border-slate-900">

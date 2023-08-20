@@ -114,7 +114,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
       <div className="flex-none w-48 h-60 mb-10  relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-teal-400">
         {/* Displays the product's image */}
         <img src={product?.image}
-          alt={"image"} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          alt={"image"} className="absolute inset-0 w-full h-full object-fill object-center" loading="lazy" />
       </div>
       <div className="mt-4 max-h-52 w-80 overflow-y-scroll px-4 py-4 ">
         <div className="relative flex flex-wrap">
