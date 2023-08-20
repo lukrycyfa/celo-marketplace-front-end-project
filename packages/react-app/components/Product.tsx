@@ -167,6 +167,12 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     try {
             // sets the setLoading alert
       toast.loading("Purchasing...", { toastId: 1 });
+      if (typeof callProduct === "function") {
+      // Makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
+      await callProduct();
+    } else {
+      throw new Error("callProduct is not defined");
+    }
       // makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
       await callProduct();
       // sets the Success alert
