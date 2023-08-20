@@ -348,7 +348,6 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           {!confirm && (<button
             disabled={!!loading || approved}
             onClick={async () => {
-              if (!address) return;
               setFunctionName("buyProduct");
               setArgs([product.id]);
               setConfirm(true);
