@@ -65,18 +65,30 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
       setConfirm(false);
       throw "Failed to delete this product";
     }
-    // sets the Loading alert
-    setLoading("Deleting...");
-    toast.loading("Deleting...", { toastId: 1 });
-    // delete the product with the `callProduct` utility returned from the `useContractSend` hook
-    await callProduct();
-    toast.done(1)
-    // Disable the enablquery and confirm states
-    setEnableQuery(false);
-    setConfirm(false);
-    // sets the Success alert;
-    toast.success("Deleted Successfully");
-    setLoading("");
+    try {
+      // sets the Loading alert
+      setLoading("Deleting...");
+      toast.loading("Deleting...", { toastId: 1 });
+      // delete the product with the `callProduct` utility returned from the `useContractSend` hook
+      await callProduct();
+      toast.done(1)
+      // Disable the enablquery and confirm states
+      setEnableQuery(false);
+      setConfirm(false);
+      // sets the Success alert;
+      toast.success("Deleted Successfully");
+      setLoading("");
+      // If there are an error's, display the error message       
+    }  catch (e: any) {
+      console.log({ e });
+      toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
+      // Disable the enablquery and confirm states
+      setEnableQuery(false);
+      setConfirm(false);
+      toast.done(1);
+      setLoading("");
+    }
+
   };
 
 

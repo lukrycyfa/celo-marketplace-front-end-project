@@ -103,15 +103,23 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
         reSet()
         throw `Failed While ${message}ing Product`;
       }
-      // sets the Loading alert
-      setLoading(`${message}ing...`);
-      toast.loading(`${message}ing...`, { toastId: 1 })
-      // make modifications to the product with the `writeProduct` utility returned from the `useContractSend` hook.
-      await writeProduct();
-      toast.done(1)
-      // sets the Success alert
-      toast.success(`${message}ed`)
-      reSet();
+      try {
+            // sets the Loading alert
+            setLoading(`${message}ing...`);
+            toast.loading(`${message}ing...`, { toastId: 1 })
+            // make modifications to the product with the `writeProduct` utility returned from the `useContractSend` hook.
+            await writeProduct();
+            toast.done(1)
+            // sets the Success alert
+            toast.success(`${message}ed`)
+            reSet();
+            // Display an error message if something goes wrong
+          } catch (e: any) {
+            console.log({ e });
+            toast.error(e?.message || "Something went wrong. Try again.");
+            toast.done(1)
+            reSet();
+          }
     }, 2000);
 
   };

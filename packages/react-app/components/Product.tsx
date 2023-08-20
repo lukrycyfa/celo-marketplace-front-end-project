@@ -164,14 +164,21 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       reSet();
       throw "Failed to purchase this product";
     }
-    // sets the setLoading alert
-    toast.loading("Purchasing...", { toastId: 1 });
-    // makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
-    await callProduct();
-    // sets the Success alert
-    toast.done(1);
-    toast.success("Product Purchased");
-    reSet();
+    try {
+            // sets the setLoading alert
+      toast.loading("Purchasing...", { toastId: 1 });
+      // makes the product purchase with the `callProduct` utility returned from the `useContractSend` hook.
+      await callProduct();
+      // sets the Success alert
+      toast.done(1);
+      toast.success("Product Purchased");
+      reSet();
+    } catch (e: any) {
+      // Display any error's if anything goes wrong with the proccess
+      toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
+      toast.done(1);
+      reSet();
+
   };
 
   // The handleApprove function utilized in make calls to ERC20 cUSD contract to approve the purchase of the product. 
@@ -209,14 +216,20 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       reSet();
       throw "Failed to comment this product";
     }
-    // sets the Loading alert
-    toast.loading("commenting...", { toastId: 1 });
-    // makes the comment with the `callProduct` utility returned from the `useContractSend` hook.
-    await callProduct();
-    // sets the Success alert
-    toast.done(1)
-    toast.success("Done");
-    reSet();
+    try {
+      // sets the Loading alert
+      toast.loading("commenting...", { toastId: 1 });
+      // makes the comment with the `callProduct` utility returned from the `useContractSend` hook.
+      await callProduct();
+      // sets the Success alert
+      toast.done(1)
+      toast.success("Done");
+      reSet();      
+    }catch (e: any) {
+      // Display any error's if anything goes wrong with the proccess
+      toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
+      toast.done(1);
+      reSet();
   };
 
 

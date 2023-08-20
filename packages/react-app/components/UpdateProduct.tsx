@@ -108,20 +108,29 @@ const UpdateProductModal = ({ product }: any) => {
       }
 
       if (!isComplete) throw new Error("Please fill all fields");
-      // sets the Loading alert
-      setLoading("Updating...");
-      toast.loading("Updating...", { toastId: 1 });
-      // Update the product by calling the `updateProduct` utility
-      await updateProduct();
-      // sets the Loading alert 
-      toast.done(1)
-      setLoading("Product Updated");
-      // sets the Success alert 
-      toast.success("Product Updated");
-      // Reset states and clear the form
-      setTimeout(() => {
+      try {
+          // sets the Loading alert
+          setLoading("Updating...");
+          toast.loading("Updating...", { toastId: 1 });
+          // Update the product by calling the `updateProduct` utility
+          await updateProduct();
+          // sets the Loading alert 
+          toast.done(1)
+          setLoading("Product Updated");
+          // sets the Success alert 
+          toast.success("Product Updated");
+          // Reset states and clear the form
+          setTimeout(() => {
+            reSet();
+          }, 2000);        
+      // Display an error message if something goes wrong
+      } catch (e: any) {
+        console.log({ e });
+        toast.error(e?.message || "Something went wrong. Try again.");
+        toast.done(1)
+        // Reset states and input fields
         reSet();
-      }, 2000);
+      }  
     }, 1500);
 
   };

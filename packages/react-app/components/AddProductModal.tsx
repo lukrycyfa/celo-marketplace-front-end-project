@@ -106,19 +106,28 @@ const AddProductModal = () => {
       }
 
       if (!isComplete) throw new Error("Please fill all fields");
-      // sets the setLoading alert
-      setLoading("Creating...");
-      toast.loading("Creating...", { toastId: 1 });
-      // Create the product by calling the `createProduct` utility 
-      await createProduct();
-      // sets the setLoading alert
-      setLoading("Product Added");
-      toast.done(1)
-      toast.success("Product Added");
-      // Reset states and clear form
-      setTimeout(() => {
+      try {
+          // sets the setLoading alert
+          setLoading("Creating...");
+          toast.loading("Creating...", { toastId: 1 });
+          // Create the product by calling the `createProduct` utility 
+          await createProduct();
+          // sets the setLoading alert
+          setLoading("Product Added");
+          toast.done(1)
+          toast.success("Product Added");
+          // Reset states and clear form
+          setTimeout(() => {
+            reSet();
+          }, 2500);        
+      // Display an error message if something goes wrong
+      } catch (e: any) {
+        console.log({ e });
+        toast.error(e?.message || "Something went wrong. Try again.");
+        toast.done(1)
+        // Reset states and input fields.
         reSet();
-      }, 2500);
+      }
     }, 1500);
 
   };
