@@ -71,7 +71,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
   const [approved, setApproved] = useState(false);
 
   // Reassign the product price to the `_price` variable pending on basis the discount is enabled (`ifdiscount`)
-  const _price = (!product?.ifdiscount && product?.price.toString() || product?.ifdiscount && product?.pricewithdiscount.toString())
+  const _price = product?.ifdiscount ? product?.pricewithdiscount.toString() : product?.price.toString();
 
   // Use the useContractApprove hook to approve the spending of the product's price, for the ERC20 cUSD contract  
   const { writeAsync: approve } = useContractApprove(_price || "0");
@@ -85,7 +85,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
   // The `useContractCall` custom hook, for retriving comments relating to this product.
   const { data: _comments }: any = useContractCall("readProductComents", [Number(_product.productId)], true);
   // Assign the returned comments to the `_productcomment` variables
-  const _productcomments = useMemo(()=> _comments ? _comments : [], [_comments]);
+  const _productcomments = useMemo(() => _comments?.map(cm => ({ customer: cm.customer, review: cm.review })) || [], [_comments]);
 
   // Use the useConnectModal hook to trigger the wallet connect modal
   const { openConnectModal } = useConnectModal();
@@ -456,7 +456,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                               <label className="block text-sm font-medium leading-6 text-slate-200">
                                 Comment Product
                               </label>
-                              {/* Text area to input commnets */}
+                              {/* Text area to input comments */}
                               <div className="mt-2">
                                 <textarea
                                   rows={3}
