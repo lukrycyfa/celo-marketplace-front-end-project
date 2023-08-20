@@ -185,6 +185,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
   const handleApprove = async () => {
     // Opens the connection modal when the user is not yet connected
     if (!address && openConnectModal) {
+      reSet();
       openConnectModal();
       return;
     }
