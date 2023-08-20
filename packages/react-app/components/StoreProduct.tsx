@@ -356,7 +356,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
                 {confirm && (
                   <button
                     type="button"
-                    disabled={!isComplete || !!loading}
+                    disabled={!isComplete || !!loading || !writeProduct}
                     className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
                     onClick={() => {
                       modifyProduct("Add");
@@ -463,7 +463,9 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
                       <i className="fas fa-times"></i> Cancel
                       {/* calls the `modifyProduct` function to modify the contract with the current `functionname` set in the `useContractSend` hook when clicked */}
                     </button>
-                    <button className="h-10 px-6 font-semibold rounded-md border-2 shadow-xl hover:bg-blue-700 dark:border-slate-700 text-slate-400" type="button" onClick={() => {
+                    <button className="h-10 px-6 font-semibold rounded-md border-2 shadow-xl hover:bg-blue-700 dark:border-slate-700 text-slate-400" type="button" 
+                    disabled={!writeProduct}
+                    onClick={() => {
                       modifyProduct(confirmAction);
                     }}
                     >

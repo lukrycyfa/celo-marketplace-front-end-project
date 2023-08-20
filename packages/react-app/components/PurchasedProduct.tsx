@@ -173,7 +173,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
             )}
             {/* Calls the `modifyProduct` function when clicked */}
             {confirm && (<><button
-              disabled={!!loading}
+              disabled={!!loading || !callProduct}
               onClick={() => {
                 setTimeout(() => {
                   modifyProduct();

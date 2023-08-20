@@ -493,7 +493,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                             {confirmcomment && (
                               <>
                                 <button
-                                  disabled={!!loading}
+                                  disabled={!!loading || !callProduct}
                                   onClick={() => {
                                     setLoading("commenting...");
                                     setTimeout(() => {
