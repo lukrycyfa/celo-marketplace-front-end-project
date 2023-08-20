@@ -96,7 +96,6 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   // taking a message as an peremeter for Alerts
   const handleWriteProduct = async (message: String | any) => {
 
-    setTimeout(async () => {
       if (!writeProduct) {
         // throw an error if the `writeProduct` utility is undefined.
         toast.error(`Failed While ${message}ing Product`);
@@ -120,7 +119,6 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
         toast.done(1)
         reSet();
       }
-    }, 2000);
 
   };
 

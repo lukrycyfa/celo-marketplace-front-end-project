@@ -94,7 +94,6 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
 
   // Define the `modifyProduct` function that is called when the user clicks the Delete Product button
   const modifyProduct = async () => {
-    setTimeout(async () => {
       try {
         // call the handleDelete function
         await handleDelete();
@@ -108,7 +107,6 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
         toast.done(1);
         setLoading("");
       }
-    }, 1500);
 
   };
 
