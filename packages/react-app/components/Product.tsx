@@ -388,7 +388,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           className="mt-4 h-14 w-full border-[1px] border-slate-800 dark:text-slate-200 p-2 rounded-lg hover:bg-slate-800 hover:text-black"
           onClick={() => reSet()}
         >
-          Cancle
+          Cancel
         </button>)}
       </div>
       <Transition.Root show={open} as={Fragment}>
