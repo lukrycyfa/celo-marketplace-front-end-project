@@ -256,7 +256,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
         toast.done(1);
         reSet();
       }
-    }, 1500);
+    }, 1000);
 
   };
 
@@ -496,9 +496,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                                   disabled={!!loading || !callProduct}
                                   onClick={() => {
                                     setLoading("commenting...");
-                                    setTimeout(() => {
-                                      getProduct("comment", handleComment);
-                                    }, 2000);
+                                    getProduct("comment", handleComment);
                                   }}
                                   className="h-10 px-6 font-semibold rounded-md border hover:bg-blue-700 dark:border-slate-700 text-slate-300"
                                 >
