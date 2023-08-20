@@ -230,6 +230,7 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
       toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
       toast.done(1);
       reSet();
+    }  
   };
 
 
