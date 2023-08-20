@@ -347,11 +347,11 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           {!confirm && (<button
             disabled={!!loading || approved}
             onClick={async () => {
+              if (!address) return;
               setFunctionName("buyProduct");
               setArgs([product.id]);
-              await handleApprove();
-              if (!address) return;
               setConfirm(true);
+              await handleApprove();
             }}
             className="mt-4 h-14 w-full border-[1px] border-slate-800 dark:text-slate-200 p-2 rounded-lg hover:bg-slate-800 hover:text-black"
           >
