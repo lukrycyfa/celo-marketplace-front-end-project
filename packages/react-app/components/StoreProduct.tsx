@@ -56,7 +56,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
   // Sets The visibilty state of the Addstock, Comments, and Connfirm modals.
   const [visibleAddstock, setVisibleAddstock] = useState(false);
   const [visibleComments, setVisibleComments] = useState(false);
-  const [confirmmodal, setConnfirmModal] = useState(false);
+  const [confirmmodal, setConfirmModal] = useState(false);
   // Sets the visible state of the addstock button.
   const [confirm, setConfirm] = useState(false);
   // This state is used to store the value of the addstock input field
@@ -87,7 +87,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
     setFunctionName('');
     setConfirmAction("");
     setLoading("");
-    setConnfirmModal(false);
+    setConfirmModal(false);
     setVisibleAddstock(false);
     clearForm();
   }
@@ -239,7 +239,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
                 setArgs([product?.id]);
                 setEnableQuery(true);
                 setConfirmAction(`${(!product?.ifdiscount && "Enabl" || product?.ifdiscount && "Disabl")}`);
-                setConnfirmModal(true);
+                setConfirmModal(true);
               }}
             >
               {!product?.ifdiscount && ("enable discount")}
@@ -254,7 +254,7 @@ const MyProduct = ({ _product, loading, setLoading }: any) => {
                 setArgs([product?.id]);
                 setEnableQuery(true);
                 setConfirmAction("Delet");
-                setConnfirmModal(true);
+                setConfirmModal(true);
               }}
             >
               Delete Product
