@@ -114,15 +114,19 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
     // Returns when the product comments are unavailable
     if (!_productcomments) return;
     // Sets the product comments making use of each comments attribute's and the Comments interface 
-    var comms = Array()
-    _productcomments.forEach((cm: object | any) => {
+    if (_productcomments) {
+  var comms = Array();
+  _productcomments.forEach((cm: object | any) => {
+    if (cm?.customer && cm?.review) {
       comms.push({
         customer: cm.customer,
         review: cm.review
-      })
-    })
-    setComments({ comments: comms });
-  }, [_product, _productcomments]);
+      });
+    }
+  });
+  setComments({ comments: comms });
+}
+, [_product, _productcomments]);
 
   // Call the getFormatProduct function when `_product` state changes
   useEffect(() => {
