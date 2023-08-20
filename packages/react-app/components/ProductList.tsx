@@ -13,8 +13,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // Import the custom hook useFeeInfo to read gas fee information form the network
 import { useFeeInfo } from "@/hooks/contract/useNeworkFee";
-// Import the  `useRetriveBalance` to return address and account balance.
-import { useRetriveBalance } from "@/hooks/contract/useReturnBalance";
+// Import the  `useRetrieveBalance` to return address and account balance.
+import { useRetrieveBalance } from "@/hooks/contract/useReturnBalance";
 // Import other components needed to render information
 import { Dialog, Transition, Menu } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -41,8 +41,8 @@ const ProductList = () => {
   // Instanciate the useFeeInfo hook to read gas fee information form the network
   const { gasPrice, maxFeePerGas } = useFeeInfo()
 
-  // Instanciate the useRetriveBalance hook to read connected accounts's address and cusdBalance
-  const { address, cusdBalance } = useRetriveBalance()
+  // Instanciate the useRetrieveBalance hook to read connected accounts's address and cusdBalance
+  const { address, cusdBalance } = useRetrieveBalance()
 
   // Assign the returned products to the `_products` variable 
   const _products = useMemo(()=> _productsmeta ? _productsmeta : [], [_productsmeta]);
