@@ -482,6 +482,10 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
                                     setArgs([newComment, product.id]);
                                     setEnableQuery(true);
                                     setConfirmComment(true);
+                                    if (!address && openConnectModal) {
+                                      openConnectModal();
+                                      return;
+                                    }
                                   }}
                                   className="h-10 px-6 font-semibold rounded-md border hover:bg-blue-700 dark:border-slate-700 text-slate-300"
                                 >
