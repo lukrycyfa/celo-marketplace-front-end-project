@@ -57,16 +57,16 @@ const ProductList = () => {
   const getProducts = (sortBy?: string | null) => {
     // If there are no products, return null
     if (!marketproducts) return null;
-    // assign the retrived products to a variable
-    var _retrivedProducts = marketproducts;
+    // assign the retrieved products to a variable
+    var _retrievedProducts = marketproducts;
     const products = Array();
     // asserts if the the function was called with the sorted parameter
     if (sortBy !== null) {
-      // re-assign the the retrived products after been sorted
-      _retrivedProducts = sortProducts(marketproducts, sortBy);
+      // re-assign the the retrieved products after been sorted
+      _retrievedProducts = sortProducts(marketproducts, sortBy);
     }
-    //Loop through the _retrivedProducts, populate a Product component and push it into the products array
-    _retrivedProducts.forEach((i: object | any, idx: number | any) => {
+    //Loop through the _retrievedProducts, populate a Product component and push it into the products array
+    _retrievedProducts.forEach((i: object | any, idx: number | any) => {
       products.push(
         <Product
           key={idx}
