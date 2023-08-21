@@ -348,6 +348,11 @@ const Product = ({ _product, address, loading, setLoading }: any) => {
           {!confirm && (<button
             disabled={!!loading || approved}
             onClick={async () => {
+              if(Number(product?.instock) <= 0){
+                toast.error("This Product is out of stock");
+                reSet();
+                return;
+              }
               setFunctionName("buyProduct");
               setArgs([product.id]);
               setConfirm(true);
