@@ -88,7 +88,7 @@ const ProductList = () => {
     // and sort products using the sortBy paremeter
     _sortedProducts.sort((pro_one: object | any, pro_two: object | any) => {
       return Number(pro_one[sortBy]) > Number(pro_two[sortBy])
-    }).reverse()
+    })
     return _sortedProducts;
   }
 
