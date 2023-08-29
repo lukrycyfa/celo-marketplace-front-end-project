@@ -38,6 +38,25 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
   const getFormatProduct = useCallback(() => {
     // Returns null when the product it unavailable
     if (!_product) return null;
+
+    const id = Number(_product.productId);
+    const price = Number(_product.price);
+
+    if (isNaN(id) || isNaN(price)) {
+      toast.error("Invalid product data. Please try again.");
+      console.error("Invalid ID or price:", _product.productId, _product.price)
+      return {
+        id: -1, // Fallback ID
+        ownedby: "Unknown",
+        name: "Invalid Product",
+        image: "",
+        description: "This product's data is invalid.",
+        location: "Unknown",
+        price: 0,
+        count: "0"
+      };
+    }
+
     // Sets the product state making use of `_product`, it's attribute's, and the Product interface 
     setProduct({
       id: Number(_product.productId),
@@ -63,7 +82,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
     if (!callProduct) {
       toast.error("Failed to delete this product");
       setConfirm(false);
-      throw "Failed to delete this product";
+      throw new Error("Failed to delete this product");
     }
     try {
       // sets the Loading alert
@@ -78,7 +97,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
       // sets the Success alert;
       toast.success("Deleted Successfully");
       setLoading("");
-      // If there are an error's, display the error message       
+      // If there are errors, display the error message       
     }  catch (e: any) {
       console.log({ e });
       toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
@@ -97,7 +116,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
       try {
         // call the handleDelete function
         await handleDelete();
-        // If there are an error's, display the error message
+        // If there are errors, display the error message
       } catch (e: any) {
         console.log({ e });
         toast.error(e?.reason || e?.message || "Something went wrong. Try again.");
@@ -181,7 +200,7 @@ const Purchased = ({ _product, loading, setLoading }: any) => {
             >
               Delete Product
             </button>
-              {/* cancles pending process and Sets `enablequery` and `confirm` states when clicked */}
+              {/* cancels pending process and Sets `enablequery` and `confirm` states when clicked */}
               <button
                 disabled={!!loading}
                 onClick={() => {

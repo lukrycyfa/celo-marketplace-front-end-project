@@ -111,15 +111,18 @@ const AddProductModal = () => {
           setLoading("Creating...");
           toast.loading("Creating...", { toastId: 1 });
           // Create the product by calling the `createProduct` utility 
-          await createProduct();
-          // sets the setLoading alert
-          setLoading("Product Added");
-          toast.done(1)
-          toast.success("Product Added");
-          // Reset states and clear form
-          setTimeout(() => {
-            reSet();
-          }, 2500);        
+          if (createProduct) {
+            // Create the product by calling the `createProduct` utility 
+            await createProduct();
+            // sets the setLoading alert
+            setLoading("Product Added");
+            toast.done(1)
+            toast.success("Product Added");
+            // Reset states and clear form
+            setTimeout(() => {
+              reSet();
+            }, 2500);
+          }        
       // Display an error message if something goes wrong
       } catch (e: any) {
         console.log({ e });
@@ -132,26 +135,21 @@ const AddProductModal = () => {
 
   };
 
+  const MAX_DISCOUNT = 100;
+
   // Asserts a valid discount value
   const validDiscount = (num: number) => {
-    return (num < 100);
+    return (num < MAX_DISCOUNT);
   }
 
   // Called to enable and disable all input field and the `useContractSend` hook automatatic query state.  
   const enableSubmit = () => {
-    if (enablequery) {
-      document.querySelectorAll('input').forEach((i) => {
-        i.disabled = false;
-      });
-      setEnableQuery(false);
-    } else {
-      document.querySelectorAll('input').forEach((i) => {
-        i.disabled = true;
-      });
-      setEnableQuery(true);
-    }
-
-  }
+    setEnableQuery((prevEnableQuery) => !prevEnableQuery);
+  
+    document.querySelectorAll('input').forEach((input) => {
+      input.disabled = enablequery;
+    });
+  };
 
   // Define function that handles the creation of a product, if a user submits the product form
   const addProduct = async (e: any) => {
